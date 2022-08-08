@@ -7,19 +7,21 @@ import 'package:sqflite/sqflite.dart';
 class DataBaseHelper
 {
 
-  static DataBaseHelper? _instance;
-  Database? db;
+  Database? _db;
 
+  DataBaseHelper();
   factory DataBaseHelper.instance()
   {
-    return DataBaseHelper._internal();
+    return DataBaseHelper();
   }
 
-  DataBaseHelper._internal()
-  {
-    db =  initDb();
-  }
 
+
+  Future<Database> get db async {
+    if (_db != null) return _db!;
+    _db = await initDb();
+    return _db!;
+  }
 
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();

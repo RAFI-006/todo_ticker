@@ -3,9 +3,16 @@ import 'package:todo_ticker/database/database.dart';
 import 'package:todo_ticker/services/task_service.dart';
 import 'package:todo_ticker/services/task_service_imp.dart';
 
+import '../services/navigation_service.dart';
+import '../services/snackbar_service.dart';
+
 final locator = GetIt.instance;
-final instance =  DataBaseHelper.instance();
+final instance =  DataBaseHelper();
+
 Future<void> setupLocator()async
 {
-  locator.registerSingleton<ITaskService>(TaskServicesImp(instance.db));
+  final db = await instance.db;
+  locator.registerSingleton<ITaskService>(TaskServicesImp(db));
+  locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(() => SnackBarService());
 }

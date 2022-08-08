@@ -39,6 +39,11 @@ dependencies:
   get_it:
   path_provider:
   stacked:
+  flutter_picker:
+  flutter_countdown_timer:
+  flutter_hooks:
+  stacked_hooks:
+  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +61,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
