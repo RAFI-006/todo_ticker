@@ -1,4 +1,4 @@
-import 'package:stacked/stacked.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:todo_ticker/constants/constants_strings.dart';
 import 'package:todo_ticker/model/task_model.dart';
 import 'package:todo_ticker/services/task_service.dart';
@@ -6,7 +6,7 @@ import 'package:todo_ticker/services/task_service.dart';
 import '../getit/locator.dart';
 import '../services/snackbar_service.dart';
 
-class HomePageViewModel extends BaseViewModel {
+class HomePageViewModel extends ChangeNotifier {
   var _taskServices = locator<ITaskService>();
   String status = "TODO";
   List<TasksModel> _tasksList = [];
@@ -19,7 +19,9 @@ class HomePageViewModel extends BaseViewModel {
 
   bool isGridView = false;
 
-  HomePageViewModel();
+  HomePageViewModel() {
+    init();
+  }
 
   void toggleView() {
     isGridView == false ? isGridView = true : isGridView = false;
@@ -74,16 +76,14 @@ class HomePageViewModel extends BaseViewModel {
 
   void startTimer(index) {
     if (!taskStatusList[index].isStart) {
-      if(taskStatusList[index].duration>=3) {
+      if (taskStatusList[index].duration >= 3) {
         taskStatusList[index].status = "IN-PROGRESS";
         taskStatusList[index].isStart = true;
+      } else {
+        taskStatusList[index].status = "DONE";
+        taskStatusList[index].isStart = false;
+        taskStatusList[index].duration = 0;
       }
-      else
-        {
-          taskStatusList[index].status = "DONE";
-          taskStatusList[index].isStart = false;
-          taskStatusList[index].duration =0;
-        }
     } else {
       taskStatusList[index].status = "IN-PROGRESS";
       taskStatusList[index].isStart = false;

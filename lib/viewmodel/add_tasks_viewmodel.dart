@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:stacked/stacked.dart';
 import 'package:todo_ticker/model/task_model.dart';
 import 'package:todo_ticker/routes/routes.dart';
+
 import '../constants/constants_strings.dart';
 import '../getit/locator.dart';
 import '../services/navigation_service.dart';
 import '../services/snackbar_service.dart';
 import '../services/task_service.dart';
 
-class AddTasksViewModel extends BaseViewModel {
+class AddTasksViewModel extends ChangeNotifier {
   final _taskServices = locator<ITaskService>();
   final _navigationService = locator<NavigationService>();
 

@@ -38,7 +38,7 @@ dependencies:
   path:
   get_it:
   path_provider:
-  stacked:
+  provider:
   flutter_picker:
   flutter_countdown_timer:
   flutter_hooks:
